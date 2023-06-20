@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora Elétrica</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+    }
+
+    .calculator {
+      margin-bottom: 20px;
+      padding: 20px;
+      border: 1px solid #a83131;
+      background-color: #f9f9f9;
+    }
+
+    .calculator h4 {
+      margin-top: 0;
+    }
+
+    .calculator .result {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Calculadora Elétrica</h2>
+
+    <!-- Calculadora para Q = n.e -->
+    <div class="calculator">
+      <h4>Q = n.e</h4>
+      <div class="form-group">
+        <label for="inputQneN">Valor de n:</label>
+        <input type="number" class="form-control" id="inputQneN">
+      </div>
+      <div class="form-group">
+        <label for="inputQneE">Valor de e:</label>
+        <input type="number" class="form-control" id="inputQneE">
+      </div>
+      <button class="btn btn-primary" onclick="calcularQne()">Calcular</button>
+      <button class="btn btn-secondary" onclick="limparQne()">Limpar</button>
+      <div class="result mt-3">
+        <h5>Resultado:</h5>
+        <div id="resultadoQne"></div>
+      </div>
+    </div>
+
+    <!-- Calculadora para Lei de Coulomb -->
+    <div class="calculator">
+      <h4>Lei de Coulomb</h4>
+      <div class="form-group">
+        <label for="inputCarga1">Valor da carga 1 (C):</label>
+        <input type="number" class="form-control" id="inputCarga1">
+      </div>
+      <div class="form-group">
+        <label for="inputCarga2">Valor da carga 2 (C):</label>
+        <input type="number" class="form-control" id="inputCarga2">
+      </div>
+      <div class="form-group">
+        <label for="inputDistancia">Valor da distância (m):</label>
+        <input type="number" class="form-control" id="inputDistancia">
+      </div>
+      <button class="btn btn-primary" onclick="calcularCoulomb()">Calcular</button>
+      <button class="btn btn-secondary" onclick="limparCoulomb()">Limpar</button>
+      <div class="result mt-3">
+        <h5>Resultado:</h5>
+        <div id="resultadoCoulomb"></div>
+      </div>
+    </div>
+
+    <!-- Calculadora para Campo Elétrico -->
+    <div class="calculator">
+      <h4>Campo Elétrico</h4>
+      <div class="form-group">
+        <label for="inputCarga">Valor da carga (C):</label>
+        <input type="number" class="form-control" id="inputCarga">
+      </div>
+      <div class="form-group">
+        <label for="inputDistanciaCampo">Valor da distância (m):</label>
+        <input type="number" class="form-control" id="inputDistanciaCampo">
+      </div>
+      <button class="btn btn-primary" onclick="calcularCampo()">Calcular</button>
+      <button class="btn btn-secondary" onclick="limparCampo()">Limpar</button>
+      <div class="result mt-3">
+        <h5>Resultado:</h5>
+        <div id="resultadoCampo"></div>
+      </div>
+    </div>
+
+    <!-- Calculadora para Energia Potencial Elétrica -->
+    <div class="calculator">
+      <h4>Energia Potencial Elétrica</h4>
+      <div class="form-group">
+        <label for="inputCargaEnergia">Valor da carga (C):</label>
+        <input type="number" class="form-control" id="inputCargaEnergia">
+      </div>
+      <div class="form-group">
+        <label for="inputPotencial">Valor do potencial (V):</label>
+        <input type="number" class="form-control" id="inputPotencial">
+      </div>
+      <button class="btn btn-primary" onclick="calcularEnergiaPotencial()">Calcular</button>
+      <button class="btn btn-secondary" onclick="limparEnergiaPotencial()">Limpar</button>
+      <div class="result mt-3">
+        <h5>Resultado:</h5>
+        <div id="resultadoEnergiaPotencial"></div>
+      </div>
+    </div>
+
+    <!-- Calculadora para Potencial Elétrico -->
+    <div class="calculator">
+      <h4>Potencial Elétrico</h4>
+      <div class="form-group">
+        <label for="inputCargaPotencial">Valor da carga (C):</label>
+        <input type="number" class="form-control" id="inputCargaPotencial">
+      </div>
+      <div class="form-group">
+        <label for="inputDistanciaPotencial">Valor da distância (m):</label>
+        <input type="number" class="form-control" id="inputDistanciaPotencial">
+      </div>
+      <button class="btn btn-primary" onclick="calcularPotencialEletrico()">Calcular</button>
+      <button class="btn btn-secondary" onclick="limparPotencialEletrico()">Limpar</button>
+      <div class="result mt-3">
+        <h5>Resultado:</h5>
+        <div id="resultadoPotencialEletrico"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function calcularQne() {
+      const n = document.getElementById('inputQneN').value;
+      const e = document.getElementById('inputQneE').value;
+      const resultado = n * e;
+      document.getElementById('resultadoQne').textContent = 'Q = ' + resultado + ' C';
+    }
+
+    function limparQne() {
+      document.getElementById('inputQneN').value = '';
+      document.getElementById('inputQneE').value = '';
+      document.getElementById('resultadoQne').textContent = '';
+    }
+
+    function calcularCoulomb() {
+      const carga1 = document.getElementById('inputCarga1').value;
+      const carga2 = document.getElementById('inputCarga2').value;
+      const distancia = document.getElementById('inputDistancia').value;
+      const k = 9e9;
+      const resultado = k * Math.abs(carga1) * Math.abs(carga2) / Math.pow(distancia, 2);
+      document.getElementById('resultadoCoulomb').textContent = 'F = ' + resultado + ' N';
+    }
+
+    function limparCoulomb() {
+      document.getElementById('inputCarga1').value = '';
+      document.getElementById('inputCarga2').value = '';
+      document.getElementById('inputDistancia').value = '';
+      document.getElementById('resultadoCoulomb').textContent = '';
+    }
+
+    function calcularCampo() {
+      const carga = document.getElementById('inputCarga').value;
+      const distanciaCampo = document.getElementById('inputDistanciaCampo').value;
+      const k = 9e9;
+      const resultado = k * Math.abs(carga) / Math.pow(distanciaCampo, 2);
+      document.getElementById('resultadoCampo').textContent = 'E = ' + resultado + ' N/C';
+    }
+
+    function limparCampo() {
+      document.getElementById('inputCarga').value = '';
+      document.getElementById('inputDistanciaCampo').value = '';
+      document.getElementById('resultadoCampo').textContent = '';
+    }
+
+    function calcularEnergiaPotencial() {
+      const cargaEnergia = document.getElementById('inputCargaEnergia').value;
+      const potencial = document.getElementById('inputPotencial').value;
+      const resultado = cargaEnergia * potencial;
+      document.getElementById('resultadoEnergiaPotencial').textContent = 'U = ' + resultado + ' J';
+    }
+
+    function limparEnergiaPotencial() {
+      document.getElementById('inputCargaEnergia').value = '';
+      document.getElementById('inputPotencial').value = '';
+      document.getElementById('resultadoEnergiaPotencial').textContent = '';
+    }
+
+    function calcularPotencialEletrico() {
+      const cargaPotencial = document.getElementById('inputCargaPotencial').value;
+      const distanciaPotencial = document.getElementById('inputDistanciaPotencial').value;
+      const k = 9e9;
+      const resultado = k * Math.abs(cargaPotencial) / distanciaPotencial;
+      document.getElementById('resultadoPotencialEletrico').textContent = 'V = ' + resultado + ' V';
+    }
+
+    function limparPotencialEletrico() {
+      document.getElementById('inputCargaPotencial').value = '';
+      document.getElementById('inputDistanciaPotencial').value = '';
+      document.getElementById('resultadoPotencialEletrico').textContent = '';
+    }
+  </script>
+</body>
+</html>
